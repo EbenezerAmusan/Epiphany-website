@@ -22,7 +22,7 @@ export function Header() {
   const { itemCount } = useCart();
 
   return (
-    <header className="sticky top-0 z-[9999] bg-white border-b border-gray-100">
+    <header className="absolute top-0 left-0 right-0 z-[9999]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
           <Link href="/" className="flex items-center" data-testid="link-home-logo">
@@ -33,7 +33,7 @@ export function Header() {
             />
           </Link>
 
-          <nav className="hidden lg:flex items-center gap-1">
+          <nav className="hidden lg:flex items-center justify-center flex-1 gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -41,10 +41,10 @@ export function Header() {
                 data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 <span
-                  className={`px-3 py-2 text-sm font-medium rounded-md transition-colors ${
+                  className={`text-sm font-medium transition-colors ${
                     location === link.href
-                      ? "text-brand-blue bg-brand-blue/5"
-                      : "text-gray-700 hover:text-brand-blue hover:bg-gray-50"
+                      ? "text-white"
+                      : "text-white/80 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -57,10 +57,10 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="relative"
+              className="relative text-white hover:bg-white/10"
               data-testid="button-cart"
             >
-              <ShoppingCart className="h-5 w-5 text-gray-700" />
+              <ShoppingCart className="h-5 w-5" />
               {itemCount > 0 && (
                 <span className="absolute -top-1 -right-1 bg-brand-yellow text-brand-blue-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
                   {itemCount > 99 ? "99+" : itemCount}
@@ -71,7 +71,7 @@ export function Header() {
             <Button
               variant="ghost"
               size="icon"
-              className="lg:hidden"
+              className="lg:hidden text-white hover:bg-white/10"
               onClick={() => setIsMenuOpen(!isMenuOpen)}
               data-testid="button-mobile-menu"
             >
@@ -85,7 +85,7 @@ export function Header() {
         </div>
 
         {isMenuOpen && (
-          <div className="lg:hidden border-t border-gray-100 py-4">
+          <div className="lg:hidden bg-black/80 backdrop-blur-sm rounded-lg mt-2 py-4">
             <nav className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
@@ -95,10 +95,10 @@ export function Header() {
                   data-testid={`link-mobile-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   <span
-                    className={`block px-4 py-3 text-base font-medium rounded-md transition-colors ${
+                    className={`block px-4 py-3 text-base font-medium transition-colors ${
                       location === link.href
-                        ? "text-brand-blue bg-brand-blue/5"
-                        : "text-gray-700 hover:text-brand-blue hover:bg-gray-50"
+                        ? "text-white"
+                        : "text-white/80 hover:text-white"
                     }`}
                   >
                     {link.label}
