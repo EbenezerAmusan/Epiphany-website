@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { Link, useLocation } from "wouter";
-import { Menu, X, ShoppingCart } from "lucide-react";
+import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import { useCart } from "@/lib/cartContext";
-import logoImg from "@assets/logo__7ca8a0_1770114904943.png";
+import logoImg from "@assets/logo__7ca8a0_1770116760818.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
@@ -13,27 +12,29 @@ const navLinks = [
   { href: "/farm-experience", label: "Farm Experience" },
   { href: "/events", label: "Host an Event" },
   { href: "/about", label: "About Us" },
-  { href: "/contact", label: "Contact Us" },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [location] = useLocation();
-  const { itemCount } = useCart();
 
   return (
     <header className="absolute top-0 left-0 right-0 z-[9999]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="flex items-center" data-testid="link-home-logo">
+          <Link href="/" className="flex items-center gap-3" data-testid="link-home-logo">
             <img
               src={logoImg}
-              alt="Epiphany Global Farms"
+              alt="Epiphany Global"
               className="h-10 md:h-12 w-auto"
             />
+            <div className="hidden sm:block">
+              <span className="text-white font-bold text-lg tracking-wide">EPIPHANY</span>
+              <span className="block text-white/70 text-xs tracking-widest">GLOBAL</span>
+            </div>
           </Link>
 
-          <nav className="hidden lg:flex items-center justify-center flex-1 gap-6">
+          <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
                 key={link.href}
@@ -43,8 +44,8 @@ export function Header() {
                 <span
                   className={`text-sm font-medium transition-colors ${
                     location === link.href
-                      ? "text-white"
-                      : "text-white/80 hover:text-white"
+                      ? "text-brand-orange"
+                      : "text-white/90 hover:text-white"
                   }`}
                 >
                   {link.label}
@@ -53,20 +54,15 @@ export function Header() {
             ))}
           </nav>
 
-          <div className="flex items-center gap-2">
-            <Button
-              variant="ghost"
-              size="icon"
-              className="relative text-white hover:bg-white/10"
-              data-testid="button-cart"
-            >
-              <ShoppingCart className="h-5 w-5" />
-              {itemCount > 0 && (
-                <span className="absolute -top-1 -right-1 bg-brand-yellow text-brand-blue-dark text-xs font-bold rounded-full h-5 w-5 flex items-center justify-center">
-                  {itemCount > 99 ? "99+" : itemCount}
-                </span>
-              )}
-            </Button>
+          <div className="flex items-center gap-3">
+            <Link href="/contact" className="hidden lg:block">
+              <Button
+                className="bg-brand-green text-white font-medium px-6 rounded-full"
+                data-testid="button-contact-us"
+              >
+                Contact Us
+              </Button>
+            </Link>
 
             <Button
               variant="ghost"
@@ -97,7 +93,7 @@ export function Header() {
                   <span
                     className={`block px-4 py-3 text-base font-medium transition-colors ${
                       location === link.href
-                        ? "text-white"
+                        ? "text-brand-orange"
                         : "text-white/80 hover:text-white"
                     }`}
                   >
@@ -105,6 +101,15 @@ export function Header() {
                   </span>
                 </Link>
               ))}
+              <Link
+                href="/contact"
+                onClick={() => setIsMenuOpen(false)}
+                data-testid="link-mobile-nav-contact-us"
+              >
+                <span className="block px-4 py-3 text-base font-medium text-brand-green">
+                  Contact Us
+                </span>
+              </Link>
             </nav>
           </div>
         )}

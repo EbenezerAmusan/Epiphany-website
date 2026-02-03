@@ -13,8 +13,10 @@ export default {
       colors: {
         brand: {
           yellow: "#E5C100",
+          orange: "#E59500",
           blue: "#3B4BA0",
           "blue-dark": "#2D3A8C",
+          green: "#2D9B6A",
         },
         // Flat / base colors (regular buttons)
         background: "hsl(var(--background) / <alpha-value>)",

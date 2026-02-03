@@ -39,27 +39,28 @@ export default function Home() {
   return (
     <div className="min-h-screen bg-white">
       {/* Hero Section */}
-      <section className="relative overflow-hidden">
+      <section className="relative overflow-hidden min-h-[600px] md:min-h-[700px]">
         <div className="absolute inset-0">
           <img
             src={heroImg}
             alt="Farm field with tractor"
             className="w-full h-full object-cover"
           />
-          <div className="absolute inset-0 bg-black/50" />
+          <div className="absolute inset-0 bg-gradient-to-b from-black/40 via-black/30 to-black/50" />
         </div>
-        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 md:pt-40 md:pb-32 lg:pt-48 lg:pb-40">
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 md:pt-44 md:pb-32 lg:pt-52 lg:pb-40">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold text-white leading-tight mb-6">
-              Premium, Farm-fresh produce. Grown Responsibly, Delivered Nationwide.
+            <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
+              <span className="text-white">Premium, Farm-fresh produce. </span>
+              <span className="text-brand-orange italic">Grown Responsibly, Delivered Nationwide.</span>
             </h1>
-            <p className="text-lg md:text-xl text-white/90 mb-8">
+            <p className="text-lg md:text-xl text-white mb-10">
               From Field to your Doorstep, Shop Trusted Quality from our Mixed Farm.
             </p>
             <Link href="/shop">
               <Button
                 size="lg"
-                className="bg-brand-yellow text-brand-blue-dark font-semibold px-8"
+                className="bg-brand-green text-white font-semibold px-10 py-6 rounded-full text-base"
                 data-testid="button-hero-shop-now"
               >
                 Shop Now
