@@ -1,7 +1,6 @@
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { ProductCard } from "@/components/ProductCard";
 import { MapPin } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Product } from "@shared/schema";
@@ -80,22 +79,37 @@ export default function Home() {
             {isLoading ? (
               <>
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-white rounded-lg border border-gray-100 overflow-hidden">
-                    <Skeleton className="aspect-square w-full" />
-                    <div className="p-4 space-y-3">
-                      <Skeleton className="h-5 w-3/4" />
-                      <Skeleton className="h-6 w-1/2" />
-                      <div className="flex gap-2">
-                        <Skeleton className="h-9 flex-1" />
-                        <Skeleton className="h-9 flex-1" />
-                      </div>
+                  <div key={i} className="bg-white rounded-lg overflow-hidden">
+                    <Skeleton className="aspect-[4/3] w-full" />
+                    <div className="p-4">
+                      <Skeleton className="h-5 w-1/2 mx-auto" />
                     </div>
                   </div>
                 ))}
               </>
             ) : (
               cropsProducts.map((product) => (
-                <ProductCard key={product.id} {...product} />
+                <Link
+                  key={product.id}
+                  href={`/shop/${product.id}`}
+                  className="group block"
+                  data-testid={`link-shop-product-${product.id}`}
+                >
+                  <div className="bg-white rounded-lg overflow-hidden">
+                    <div className="aspect-[4/3] overflow-hidden">
+                      <img
+                        src={product.image || "/placeholder.jpg"}
+                        alt={product.name}
+                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      />
+                    </div>
+                    <div className="p-4 text-center">
+                      <span className="text-brand-blue font-medium group-hover:underline">
+                        {product.name} →
+                      </span>
+                    </div>
+                  </div>
+                </Link>
               ))
             )}
           </div>
