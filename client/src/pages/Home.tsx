@@ -79,44 +79,56 @@ export default function Home() {
       {/* Shop Preview Section */}
       <section className="py-16 md:py-24 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-12">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-brand-green mb-12">
             Shop
           </h2>
           <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 md:gap-8">
             {isLoading ? (
               <>
                 {[1, 2, 3].map((i) => (
-                  <div key={i} className="bg-white rounded-lg overflow-hidden">
-                    <Skeleton className="aspect-[4/3] w-full" />
-                    <div className="p-4">
-                      <Skeleton className="h-5 w-1/2 mx-auto" />
+                  <div key={i} className="bg-white rounded-2xl overflow-hidden p-4">
+                    <Skeleton className="aspect-square w-full rounded-xl" />
+                    <div className="pt-4">
+                      <Skeleton className="h-5 w-1/2" />
+                      <Skeleton className="h-4 w-1/3 mt-2" />
                     </div>
                   </div>
                 ))}
               </>
             ) : (
               cropsProducts.map((product) => (
-                <Link
+                <div
                   key={product.id}
-                  href={`/shop/${product.id}`}
-                  className="group block"
-                  data-testid={`link-shop-product-${product.id}`}
+                  className="bg-white rounded-2xl p-4"
+                  data-testid={`card-shop-product-${product.id}`}
                 >
-                  <div className="bg-white rounded-lg overflow-hidden">
-                    <div className="aspect-[4/3] overflow-hidden">
-                      <img
-                        src={product.image || "/placeholder.jpg"}
-                        alt={product.name}
-                        className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                      />
-                    </div>
-                    <div className="p-4 text-center">
-                      <span className="text-brand-blue font-medium group-hover:underline">
-                        {product.name} →
-                      </span>
+                  <div className="aspect-square overflow-hidden rounded-xl">
+                    <img
+                      src={product.image || "/placeholder.jpg"}
+                      alt={product.name}
+                      className="w-full h-full object-cover"
+                    />
+                  </div>
+                  <div className="pt-4">
+                    <h3 className="text-lg font-bold text-gray-900">{product.name.split(" - ")[0]}</h3>
+                    <p className="text-gray-600 mt-1">NGN {product.price.toLocaleString()}</p>
+                    <div className="flex gap-3 mt-4">
+                      <Button
+                        variant="outline"
+                        className="flex-1 border-brand-green text-brand-green rounded-full"
+                        data-testid={`button-add-to-cart-${product.id}`}
+                      >
+                        Add to Cart
+                      </Button>
+                      <Button
+                        className="flex-1 bg-brand-green text-white rounded-full"
+                        data-testid={`button-buy-now-${product.id}`}
+                      >
+                        Buy Now
+                      </Button>
                     </div>
                   </div>
-                </Link>
+                </div>
               ))
             )}
           </div>
@@ -124,10 +136,10 @@ export default function Home() {
             <Link href="/shop">
               <Button
                 variant="outline"
-                className="border-brand-blue text-brand-blue"
+                className="border-brand-green text-brand-green rounded-full px-6"
                 data-testid="button-view-all-shop"
               >
-                View all
+                View all <span className="ml-2">→</span>
               </Button>
             </Link>
           </div>
