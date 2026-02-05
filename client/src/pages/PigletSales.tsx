@@ -1,8 +1,14 @@
+import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
 import { useCart } from "@/lib/cartContext";
+import { useToast } from "@/hooks/use-toast";
+import { apiRequest } from "@/lib/queryClient";
 
 import heroImg from "@assets/nature_product_backdrop_farm_sunlight_1_2d74e6_1770289247872.jpg";
+import reservePigImg from "@assets/img_20250703_wa0113_1_2d7170_1770289247870.jpg";
 import tn70Img from "@assets/img_20251016_wa0037_1_9efc43_1770289247870.jpg";
 import landraceImg from "@assets/img_20250703_wa0113_1_2d7170_1770289247870.jpg";
 import durocImg from "@assets/photorealistic_scene_with_pigs_raised_farm_environment_1_41400_1770286207012.jpg";
@@ -15,6 +21,35 @@ const pigletProducts = [
 
 export default function PigletSales() {
   const { addToCart } = useCart();
+  const { toast } = useToast();
+  const [formData, setFormData] = useState({
+    name: "",
+    phone: "",
+    email: "",
+    comments: "",
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+
+  const handleSubmit = async (e: React.FormEvent) => {
+    e.preventDefault();
+    setIsSubmitting(true);
+    try {
+      await apiRequest("POST", "/api/piglet-reservations", formData);
+      toast({
+        title: "Reservation Submitted",
+        description: "We'll contact you soon about your piglet reservation.",
+      });
+      setFormData({ name: "", phone: "", email: "", comments: "" });
+    } catch {
+      toast({
+        title: "Error",
+        description: "Failed to submit reservation. Please try again.",
+        variant: "destructive",
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("en-NG", {
@@ -132,6 +167,110 @@ export default function PigletSales() {
               </Card>
             ))}
           </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid grid-cols-1 md:grid-cols-2 gap-8 items-start">
+            <div>
+              <h2
+                className="text-2xl font-bold text-gray-900 mb-6"
+                data-testid="text-reserving-title"
+              >
+                RESERVING A PIG
+              </h2>
+              <div className="space-y-4 text-gray-700 text-sm">
+                <p>
+                  A non refundable deposit of $100 per animal will secure your purchase of a pig or piglet. Deposits are applied on specific piglets after 8 weeks of age.
+                </p>
+                <p>
+                  Piglets are reserved on a first-come, first-serve basis and come with care instructions.
+                </p>
+                <p>
+                  Deposits are non-refundable, but can be applied to another litter of choosing if the first choice can not be fulfilled.
+                </p>
+                <p>
+                  Best Place Farms retains the right to reserve any piglet from a litter for our own breeding program.
+                </p>
+              </div>
+            </div>
+            <div className="rounded-lg overflow-hidden">
+              <img
+                src={reservePigImg}
+                alt="Pig in pen"
+                className="w-full h-80 object-cover"
+              />
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section className="py-12 md:py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2
+            className="text-2xl font-bold text-gray-900 mb-8"
+            data-testid="text-form-title"
+          >
+            To get put on a waiting list for reserve a piglet, please complete the form below:
+          </h2>
+
+          <form onSubmit={handleSubmit} className="max-w-md space-y-6">
+            <div>
+              <label className="block text-sm text-gray-700 mb-2">Name:</label>
+              <Input
+                type="text"
+                value={formData.name}
+                onChange={(e) => setFormData({ ...formData, name: e.target.value })}
+                className="border-gray-300"
+                required
+                data-testid="input-reservation-name"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-700 mb-2">Phone number:</label>
+              <Input
+                type="tel"
+                value={formData.phone}
+                onChange={(e) => setFormData({ ...formData, phone: e.target.value })}
+                className="border-gray-300"
+                required
+                data-testid="input-reservation-phone"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-700 mb-2">Email Address:</label>
+              <Input
+                type="email"
+                value={formData.email}
+                onChange={(e) => setFormData({ ...formData, email: e.target.value })}
+                className="border-gray-300"
+                required
+                data-testid="input-reservation-email"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm text-gray-700 mb-2">Comments (if any):</label>
+              <Textarea
+                value={formData.comments}
+                onChange={(e) => setFormData({ ...formData, comments: e.target.value })}
+                className="border-gray-300 min-h-[120px]"
+                data-testid="input-reservation-comments"
+              />
+            </div>
+
+            <Button
+              type="submit"
+              className="bg-brand-green text-white"
+              disabled={isSubmitting}
+              data-testid="button-reservation-submit"
+            >
+              {isSubmitting ? "Submitting..." : "Submit"}
+            </Button>
+          </form>
         </div>
       </section>
     </div>
