@@ -8,6 +8,7 @@ import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import Home from "@/pages/Home";
 import Shop from "@/pages/Shop";
+import PigletSales from "@/pages/PigletSales";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -15,6 +16,7 @@ function Router() {
     <Switch>
       <Route path="/" component={Home} />
       <Route path="/shop" component={Shop} />
+      <Route path="/piglet-sales" component={PigletSales} />
       <Route component={NotFound} />
     </Switch>
   );
