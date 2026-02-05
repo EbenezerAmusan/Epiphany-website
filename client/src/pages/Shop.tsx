@@ -18,6 +18,11 @@ import pigsImg from "@assets/photorealistic_scene_with_pigs_raised_farm_environm
 import snailImg from "@assets/slimy_snail_crawling_green_leaf_outdoors_generated_by_ai_1_b36_1770286207012.jpg";
 import thymeImg from "@assets/thyme_1_086877_1770286207013.jpg";
 import tomatoImg from "@assets/tomato_1_fb9d01_1770286207014.jpg";
+import porkLoinImg from "@assets/83392_835_flat_pork_loin_1_fd2f37_1770288971167.jpg";
+import porkLegImg from "@assets/img_7713_1_d269ab_1770288971168.jpg";
+import porkRibsImg from "@assets/meaty_ribs_1_d15138_1770288971169.jpg";
+import porkBellyImg from "@assets/porkbelly_1_3d0319_1770288971171.jpg";
+import porkShoulderImg from "@assets/roast_01027_scaled_1_765ec4_1770288971171.jpg";
 
 const productImageMap: Record<string, string> = {
   "Palm Oil - 5 Ltr": palmOilImg,
@@ -33,6 +38,11 @@ const productImageMap: Record<string, string> = {
   "Cow": cowImg,
   "Goat": goatImg,
   "Giant Land Snail": snailImg,
+  "Pork Shoulder": porkShoulderImg,
+  "Pork Loin": porkLoinImg,
+  "Pork Belly": porkBellyImg,
+  "Pork Ribs": porkRibsImg,
+  "Leg (ham)": porkLegImg,
 };
 
 export default function Shop() {
