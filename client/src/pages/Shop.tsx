@@ -1,9 +1,7 @@
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
 import { Button } from "@/components/ui/button";
 import { Card } from "@/components/ui/card";
 import { useCart } from "@/lib/cartContext";
-import { ShoppingCart } from "lucide-react";
 import type { Product } from "@shared/schema";
 
 import shopHeroImg from "@assets/happy__1_1_9eb14b_1770286207009.jpg";
@@ -37,26 +35,12 @@ const productImageMap: Record<string, string> = {
   "Giant Land Snail": snailImg,
 };
 
-type Category = "all" | "crops" | "animals" | "pork";
-
 export default function Shop() {
-  const [activeCategory, setActiveCategory] = useState<Category>("all");
   const { addToCart } = useCart();
 
   const { data: products = [], isLoading } = useQuery<Product[]>({
     queryKey: ["/api/products"],
   });
-
-  const categories: { id: Category; label: string }[] = [
-    { id: "all", label: "All Products" },
-    { id: "crops", label: "Crops" },
-    { id: "animals", label: "Animals" },
-    { id: "pork", label: "Pork Meat" },
-  ];
-
-  const filteredProducts = activeCategory === "all"
-    ? products
-    : products.filter((p) => p.category === activeCategory);
 
   const formatPrice = (price: number) => {
     return new Intl.NumberFormat("en-NG", {
@@ -69,6 +53,47 @@ export default function Shop() {
   const getProductImage = (product: Product) => {
     return productImageMap[product.name] || product.image || palmOilImg;
   };
+
+  const cropProducts = products.filter((p) => p.category === "crops");
+  const animalProducts = products.filter((p) => p.category === "animals");
+
+  const renderProductCard = (product: Product) => (
+    <Card
+      key={product.id}
+      className="overflow-hidden bg-gray-100 border-0"
+      data-testid={`card-product-${product.id}`}
+    >
+      <div className="aspect-[4/3] overflow-hidden">
+        <img
+          src={getProductImage(product)}
+          alt={product.name}
+          className="w-full h-full object-cover"
+        />
+      </div>
+      <div className="p-4">
+        <h3
+          className="font-semibold text-brand-orange mb-1"
+          data-testid={`text-product-name-${product.id}`}
+        >
+          {product.name}
+        </h3>
+        <p
+          className="text-gray-600 text-sm mb-3"
+          data-testid={`text-product-price-${product.id}`}
+        >
+          {formatPrice(product.price)} {product.priceUnit}
+        </p>
+        <Button
+          variant="outline"
+          className="border-brand-green text-brand-green hover:bg-brand-green hover:text-white text-sm px-4 py-1 h-auto"
+          onClick={() => addToCart(product.id, 1)}
+          data-testid={`button-add-to-cart-${product.id}`}
+        >
+          Buy Now
+        </Button>
+      </div>
+    </Card>
+  );
 
   return (
     <div className="min-h-screen">
@@ -93,30 +118,12 @@ export default function Shop() {
         </div>
       </section>
 
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-wrap gap-3 mb-10">
-            {categories.map((cat) => (
-              <Button
-                key={cat.id}
-                variant={activeCategory === cat.id ? "default" : "outline"}
-                className={
-                  activeCategory === cat.id
-                    ? "bg-brand-green text-white rounded-full px-6"
-                    : "border-gray-300 text-gray-700 rounded-full px-6"
-                }
-                onClick={() => setActiveCategory(cat.id)}
-                data-testid={`button-category-${cat.id}`}
-              >
-                {cat.label}
-              </Button>
-            ))}
-          </div>
-
-          {isLoading ? (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {[...Array(8)].map((_, i) => (
-                <Card key={i} className="animate-pulse">
+      {isLoading ? (
+        <section className="py-12 md:py-16 bg-white">
+          <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+              {[...Array(6)].map((_, i) => (
+                <Card key={i} className="animate-pulse bg-gray-100 border-0">
                   <div className="h-48 bg-gray-200" />
                   <div className="p-4 space-y-3">
                     <div className="h-4 bg-gray-200 rounded w-3/4" />
@@ -125,60 +132,39 @@ export default function Shop() {
                 </Card>
               ))}
             </div>
-          ) : (
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-              {filteredProducts.map((product) => (
-                <Card
-                  key={product.id}
-                  className="overflow-hidden hover-elevate"
-                  data-testid={`card-product-${product.id}`}
-                >
-                  <div className="aspect-square overflow-hidden">
-                    <img
-                      src={getProductImage(product)}
-                      alt={product.name}
-                      className="w-full h-full object-cover transition-transform duration-300 hover:scale-105"
-                    />
-                  </div>
-                  <div className="p-4">
-                    <h3
-                      className="font-semibold text-gray-900 mb-1"
-                      data-testid={`text-product-name-${product.id}`}
-                    >
-                      {product.name}
-                    </h3>
-                    <p
-                      className="text-brand-green font-bold mb-3"
-                      data-testid={`text-product-price-${product.id}`}
-                    >
-                      {formatPrice(product.price)}{" "}
-                      <span className="text-gray-500 font-normal text-sm">
-                        {product.priceUnit}
-                      </span>
-                    </p>
-                    <Button
-                      className="w-full bg-brand-green text-white"
-                      onClick={() => addToCart(product.id, 1)}
-                      data-testid={`button-add-to-cart-${product.id}`}
-                    >
-                      <ShoppingCart className="w-4 h-4 mr-2" />
-                      Add to Cart
-                    </Button>
-                  </div>
-                </Card>
-              ))}
+          </div>
+        </section>
+      ) : (
+        <>
+          <section className="py-12 md:py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2
+                className="text-3xl md:text-4xl font-bold text-brand-green mb-8"
+                data-testid="text-section-crops"
+              >
+                Crops
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {cropProducts.map(renderProductCard)}
+              </div>
             </div>
-          )}
+          </section>
 
-          {!isLoading && filteredProducts.length === 0 && (
-            <div className="text-center py-12">
-              <p className="text-gray-500 text-lg">
-                No products found in this category.
-              </p>
+          <section className="py-12 md:py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2
+                className="text-3xl md:text-4xl font-bold text-brand-green mb-8"
+                data-testid="text-section-animals"
+              >
+                Animals
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {animalProducts.map(renderProductCard)}
+              </div>
             </div>
-          )}
-        </div>
-      </section>
+          </section>
+        </>
+      )}
     </div>
   );
 }
