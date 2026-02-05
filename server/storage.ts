@@ -67,19 +67,24 @@ export class MemStorage implements IStorage {
 
   private seedProducts() {
     const defaultProducts: InsertProduct[] = [
-      { name: "Palm Oil - 5 Ltr", price: 11500, priceUnit: "per item", category: "crops", image: "/assets/palm_oil_1_a75e74_1770114904945.jpg" },
-      { name: "Tomatoes", price: 450, priceUnit: "per kg", category: "crops", image: "/assets/tomato_1_fb9d01_1770114904946.jpg" },
-      { name: "Pepper", price: 350, priceUnit: "per kg", category: "crops", image: "/assets/pepper_2_1_bda6b5_1770114904945.jpg" },
+      { name: "Palm Oil - 5 Ltr", price: 11500, priceUnit: "per item", category: "crops" },
+      { name: "Tomatoes", price: 450, priceUnit: "per kg", category: "crops" },
+      { name: "Pepper", price: 350, priceUnit: "per kg", category: "crops" },
       { name: "Spices - Curry", price: 2500, priceUnit: "per kg", category: "crops", subcategory: "spices" },
       { name: "Spices - Thyme", price: 2500, priceUnit: "per kg", category: "crops", subcategory: "spices" },
       { name: "Spices - Ginger", price: 2500, priceUnit: "per kg", category: "crops", subcategory: "spices" },
       { name: "Spices - Garlic", price: 2500, priceUnit: "per kg", category: "crops", subcategory: "spices" },
-      { name: "TN - Piglet", price: 150000, priceUnit: "per item", category: "animals", image: "/assets/img_20250703_wa0086_2_bc6300_1770114904941.jpg" },
+      { name: "TN - Piglet", price: 150000, priceUnit: "per item", category: "animals" },
       { name: "Landrace - Piglet", price: 150000, priceUnit: "per item", category: "animals" },
       { name: "Duroc - Piglet", price: 180000, priceUnit: "per item", category: "animals" },
       { name: "Cow", price: 850000, priceUnit: "per item", category: "animals" },
-      { name: "Goat", price: 85000, priceUnit: "per item", category: "animals", image: "/assets/adorable_black_goat_with_brown_patterns_zoo_3_07320f_1770114904939.jpg" },
+      { name: "Goat", price: 85000, priceUnit: "per item", category: "animals" },
       { name: "Giant Land Snail", price: 2000, priceUnit: "per item", category: "animals" },
+      { name: "Pork Shoulder", price: 4500, priceUnit: "per kg", category: "pork" },
+      { name: "Pork Loin", price: 5500, priceUnit: "per kg", category: "pork" },
+      { name: "Pork Belly", price: 4000, priceUnit: "per kg", category: "pork" },
+      { name: "Pork Ribs", price: 5000, priceUnit: "per kg", category: "pork" },
+      { name: "Leg (ham)", price: 6000, priceUnit: "per kg", category: "pork" },
     ];
 
     defaultProducts.forEach((product) => {

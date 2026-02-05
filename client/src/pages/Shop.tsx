@@ -56,6 +56,7 @@ export default function Shop() {
 
   const cropProducts = products.filter((p) => p.category === "crops");
   const animalProducts = products.filter((p) => p.category === "animals");
+  const porkProducts = products.filter((p) => p.category === "pork");
 
   const renderProductCard = (product: Product) => (
     <Card
@@ -83,14 +84,24 @@ export default function Shop() {
         >
           {formatPrice(product.price)} {product.priceUnit}
         </p>
-        <Button
-          variant="outline"
-          className="border-brand-green text-brand-green hover:bg-brand-green hover:text-white text-sm px-4 py-1 h-auto"
-          onClick={() => addToCart(product.id, 1)}
-          data-testid={`button-add-to-cart-${product.id}`}
-        >
-          Buy Now
-        </Button>
+        <div className="flex gap-2">
+          <Button
+            variant="outline"
+            className="border-gray-300 text-gray-600 hover:bg-gray-200 text-sm px-3 py-1 h-auto"
+            onClick={() => addToCart(product.id, 1)}
+            data-testid={`button-add-to-cart-${product.id}`}
+          >
+            Add to Cart
+          </Button>
+          <Button
+            variant="outline"
+            className="border-brand-green text-brand-green hover:bg-brand-green hover:text-white text-sm px-3 py-1 h-auto"
+            onClick={() => addToCart(product.id, 1)}
+            data-testid={`button-buy-now-${product.id}`}
+          >
+            Buy Now
+          </Button>
+        </div>
       </div>
     </Card>
   );
@@ -139,7 +150,7 @@ export default function Shop() {
           <section className="py-12 md:py-16 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2
-                className="text-3xl md:text-4xl font-bold text-brand-green mb-8"
+                className="text-3xl md:text-4xl font-bold text-brand-orange mb-8"
                 data-testid="text-section-crops"
               >
                 Crops
@@ -153,13 +164,27 @@ export default function Shop() {
           <section className="py-12 md:py-16 bg-white">
             <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
               <h2
-                className="text-3xl md:text-4xl font-bold text-brand-green mb-8"
+                className="text-3xl md:text-4xl font-bold text-brand-orange mb-8"
                 data-testid="text-section-animals"
               >
                 Animals
               </h2>
               <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
                 {animalProducts.map(renderProductCard)}
+              </div>
+            </div>
+          </section>
+
+          <section className="py-12 md:py-16 bg-white">
+            <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+              <h2
+                className="text-3xl md:text-4xl font-bold text-brand-orange mb-8"
+                data-testid="text-section-pork"
+              >
+                Pork Meat
+              </h2>
+              <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
+                {porkProducts.map(renderProductCard)}
               </div>
             </div>
           </section>
