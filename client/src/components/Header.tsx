@@ -2,7 +2,7 @@ import { useState } from "react";
 import { Link, useLocation } from "wouter";
 import { Menu, X } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import logoImg from "@assets/logo__7ca8a0_1770282868060.png";
+import logoImg from "@assets/logo_1770291650027.png";
 
 const navLinks = [
   { href: "/", label: "Home" },
