@@ -22,16 +22,12 @@ export function Header() {
     <header className="absolute top-0 left-0 right-0 z-[9999]">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-16 md:h-20">
-          <Link href="/" className="flex items-center gap-2" data-testid="link-home-logo">
+          <Link href="/" className="flex items-center" data-testid="link-home-logo">
             <img
               src={logoImg}
               alt="Epiphany Global"
               className="h-10 md:h-12 w-auto"
             />
-            <div className="hidden sm:block">
-              <span className="text-white font-bold text-lg tracking-wide">EPIPHANY</span>
-              <span className="block text-white text-xs tracking-widest">GLOBAL</span>
-            </div>
           </Link>
 
           <nav className="hidden lg:flex items-center gap-6">
