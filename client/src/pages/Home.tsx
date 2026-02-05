@@ -294,20 +294,25 @@ export default function Home() {
       </section>
 
       {/* About Us Section */}
-      <section className="py-16 md:py-24">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-2xl md:text-3xl font-bold text-center text-gray-900 mb-10">
+      <section className="py-16 md:py-24 relative overflow-hidden">
+        <div className="absolute inset-0">
+          <img
+            src={goatImg}
+            alt=""
+            className="w-full h-full object-cover"
+          />
+          <div className="absolute inset-0 bg-brand-green/85" />
+        </div>
+        <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl md:text-3xl font-bold text-center text-white mb-10">
             About Us
           </h2>
-          <div className="max-w-4xl mx-auto space-y-6 text-gray-600 text-center">
+          <div className="max-w-4xl mx-auto space-y-6 text-white text-center">
             <p>
               At Epiphany Global, we believe good pigs should not only grow well but also be easy to handle.
             </p>
             <p>
-              That's why we focus on breeding pigs that are calm, friendly, and gentle.
-            </p>
-            <p>
-              From the caring TN70 mother pig to the strong TN Duroc boar, our pigs are peaceful and easy to manage. They mix well with people and other pigs, making the farm safer and more enjoyable.
+              That's why we focus on breeding pigs that are calm, friendly, and gentle. From the caring TN70 mother pig to the strong TN Duroc boar, our pigs are peaceful and easy to manage. They mix well with people and other pigs, making the farm safer and more enjoyable.
             </p>
             <p>
               Because of their calm nature, our pigs are healthier, grow better, and make daily work easier. Whether you have a big farm or a small one, Epiphany Farms can help you get the best results with less stress.
