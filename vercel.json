@@ -1,0 +1,9 @@
+{
+  "buildCommand": "REPL_ID=vercel npx vite build && cp -r attached_assets dist/public/assets",
+  "outputDirectory": "dist/public",
+  "installCommand": "npm install",
+  "framework": null,
+  "rewrites": [
+    { "source": "/(.*)", "destination": "/index.html" }
+  ]
+}
