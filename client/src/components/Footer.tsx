@@ -5,7 +5,7 @@ import { useToast } from "@/hooks/use-toast";
 import { apiRequest } from "@/lib/queryClient";
 import { SiFacebook, SiInstagram } from "react-icons/si";
 
-export function Footer() {
+export function Footer({ id }: { id?: string }) {
   const [email, setEmail] = useState("");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const { toast } = useToast();
@@ -34,7 +34,7 @@ export function Footer() {
   };
 
   return (
-    <footer className="bg-gray-950">
+    <footer id={id} className="bg-gray-950">
       <div className="h-1 bg-brand-green" />
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 md:py-16">
         <div className="grid grid-cols-1 md:grid-cols-2 gap-10">

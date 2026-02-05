@@ -10,13 +10,37 @@ const navLinks = [
   { href: "/piglet-sales", label: "Piglet for Sale" },
   { href: "/showcase", label: "Showcase" },
   { href: "/farm-experience", label: "Farm Experience" },
-  { href: "/events", label: "Host an Event" },
-  { href: "/about", label: "About Us" },
+  { href: "/", label: "Host an Event", scrollTo: null },
+  { href: "/", label: "About Us", scrollTo: "about" },
 ];
 
 export function Header() {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
-  const [location] = useLocation();
+  const [location, setLocation] = useLocation();
+
+  const handleNavClick = (href: string, scrollTo?: string | null) => {
+    if (scrollTo) {
+      if (location !== "/") {
+        setLocation("/");
+        setTimeout(() => {
+          document.getElementById(scrollTo)?.scrollIntoView({ behavior: "smooth" });
+        }, 100);
+      } else {
+        document.getElementById(scrollTo)?.scrollIntoView({ behavior: "smooth" });
+      }
+    }
+  };
+
+  const handleContactClick = () => {
+    if (location !== "/") {
+      setLocation("/");
+      setTimeout(() => {
+        document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+      }, 100);
+    } else {
+      document.getElementById("contact")?.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <header className="absolute top-0 left-0 right-0 z-[9999]">
@@ -33,13 +57,14 @@ export function Header() {
           <nav className="hidden lg:flex items-center gap-6">
             {navLinks.map((link) => (
               <Link
-                key={link.href}
+                key={link.label}
                 href={link.href}
+                onClick={() => handleNavClick(link.href, link.scrollTo)}
                 data-testid={`link-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
               >
                 <span
                   className={`text-sm font-medium transition-colors ${
-                    location === link.href
+                    location === link.href && !link.scrollTo
                       ? "text-brand-orange"
                       : "text-white/90 hover:text-white"
                   }`}
@@ -51,14 +76,13 @@ export function Header() {
           </nav>
 
           <div className="flex items-center gap-3">
-            <Link href="/contact" className="hidden lg:block">
-              <Button
-                className="bg-brand-green text-white font-medium px-6 rounded-full"
-                data-testid="button-contact-us"
-              >
-                Contact Us
-              </Button>
-            </Link>
+            <Button
+              className="hidden lg:block bg-brand-green text-white font-medium px-6 rounded-full"
+              onClick={handleContactClick}
+              data-testid="button-contact-us"
+            >
+              Contact Us
+            </Button>
 
             <Button
               variant="ghost"
@@ -81,14 +105,17 @@ export function Header() {
             <nav className="flex flex-col gap-1">
               {navLinks.map((link) => (
                 <Link
-                  key={link.href}
+                  key={link.label}
                   href={link.href}
-                  onClick={() => setIsMenuOpen(false)}
+                  onClick={() => {
+                    setIsMenuOpen(false);
+                    handleNavClick(link.href, link.scrollTo);
+                  }}
                   data-testid={`link-mobile-nav-${link.label.toLowerCase().replace(/\s+/g, "-")}`}
                 >
                   <span
                     className={`block px-4 py-3 text-base font-medium transition-colors ${
-                      location === link.href
+                      location === link.href && !link.scrollTo
                         ? "text-brand-orange"
                         : "text-white/80 hover:text-white"
                     }`}
@@ -97,15 +124,18 @@ export function Header() {
                   </span>
                 </Link>
               ))}
-              <Link
-                href="/contact"
-                onClick={() => setIsMenuOpen(false)}
+              <button
+                onClick={() => {
+                  setIsMenuOpen(false);
+                  handleContactClick();
+                }}
                 data-testid="link-mobile-nav-contact-us"
+                className="w-full text-left"
               >
                 <span className="block px-4 py-3 text-base font-medium text-brand-green">
                   Contact Us
                 </span>
-              </Link>
+              </button>
             </nav>
           </div>
         )}

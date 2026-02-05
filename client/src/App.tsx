@@ -36,7 +36,7 @@ function App() {
             <main className="flex-1">
               <Router />
             </main>
-            <Footer />
+            <Footer id="contact" />
           </div>
         </CartProvider>
         <Toaster />

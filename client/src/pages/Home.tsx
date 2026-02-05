@@ -294,7 +294,7 @@ export default function Home() {
       </section>
 
       {/* About Us Section */}
-      <section className="py-16 md:py-24 relative overflow-hidden">
+      <section id="about" className="py-16 md:py-24 relative overflow-hidden">
         <div className="absolute inset-0">
           <img
             src={goatImg}
