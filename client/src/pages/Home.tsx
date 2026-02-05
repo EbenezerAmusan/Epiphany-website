@@ -51,11 +51,17 @@ export default function Home() {
         <div className="relative max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-32 pb-24 md:pt-44 md:pb-32 lg:pt-52 lg:pb-40">
           <div className="max-w-3xl mx-auto text-center">
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight mb-6">
-              <span className="text-white">Premium, Farm-fresh produce. </span>
-              <span className="text-brand-orange italic">Grown Responsibly, Delivered Nationwide.</span>
+              <span className="text-white">Premium, Farm-fresh</span>
+              <br />
+              <span className="text-white">produce. </span>
+              <span className="text-brand-orange italic">Grown Responsibly,</span>
+              <br />
+              <span className="text-brand-orange italic">Delivered Nationwide.</span>
             </h1>
             <p className="text-lg md:text-xl text-white mb-10">
-              From Field to your Doorstep, Shop Trusted Quality from our Mixed Farm.
+              From Field to your Doorstep, Shop
+              <br />
+              Trusted Quality from our Mixed Farm.
             </p>
             <Link href="/shop">
               <Button
