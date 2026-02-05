@@ -78,14 +78,21 @@ export default function FarmExperience() {
               </div>
             </div>
 
+          </div>
+        </div>
+      </section>
+
+      <section className="pt-12 md:pt-16 pb-16 md:pb-20 bg-brand-green">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="space-y-10">
             <div>
               <h2
-                className="text-2xl font-bold text-gray-900 mb-3"
+                className="text-2xl font-bold text-white mb-3"
                 data-testid="text-expect-title"
               >
                 What to expect:
               </h2>
-              <div className="text-gray-700 space-y-4">
+              <div className="text-white space-y-4">
                 <p>
                   During your visit, you'll take a walk around the farm and learn how our pigs and other animals are raised. If there are piglets, you'll get to meet them and even help feed them. We'll show you how to take care of farm animals and share simple tips for keeping them calm and happy.
                 </p>
@@ -99,55 +106,51 @@ export default function FarmExperience() {
 
             <div>
               <h2
-                className="text-2xl font-bold text-gray-900 mb-3"
+                className="text-2xl font-bold text-white mb-3"
                 data-testid="text-additional-title"
               >
                 Additional Info:
               </h2>
-              <ul className="list-disc list-inside text-gray-700 space-y-1">
+              <ul className="list-disc list-inside text-white space-y-1">
                 <li>You'll get a confirmation once you book</li>
                 <li>Our farm is wheelchair accessible</li>
                 <li>You can come with children or family</li>
                 <li>This is a private visit, only your group will join</li>
               </ul>
             </div>
+
+            <div>
+              <h2
+                className="text-2xl font-bold text-white mb-4"
+                data-testid="text-addons-title"
+              >
+                Add-ons
+              </h2>
+              <ul className="list-disc list-inside text-white mb-4">
+                <li>Picnic on the Farm – <span className="line-through">₦25,000</span> (45 minutes)</li>
+              </ul>
+              <p className="text-white">
+                Relax after your tour in our farm picnic area.<br />
+                Enjoy the peaceful view, take pictures, and spend more time around the animals.<br />
+                (Please note: food is not provided, you can bring your own snacks or lunch.)
+              </p>
+            </div>
+
+            <div>
+              <h2
+                className="text-2xl font-bold text-white mb-4"
+                data-testid="text-cancellation-title"
+              >
+                Cancellation Policy
+              </h2>
+              <ol className="list-decimal list-inside text-white space-y-2">
+                <li>You can cancel at least 24 hours before your visit for a full refund.</li>
+                <li>If you cancel less than 24 hours before your visit, there will be no refund.</li>
+                <li>If weather is bad or there are changes, we'll offer you a new date or a refund.</li>
+                <li>Minimum number of guests is required. If not met, we'll reschedule or refund.</li>
+              </ol>
+            </div>
           </div>
-        </div>
-      </section>
-
-      <section className="py-12 md:py-16 bg-brand-green">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            className="text-2xl font-bold text-white mb-4"
-            data-testid="text-addons-title"
-          >
-            Add-ons
-          </h2>
-          <ul className="list-disc list-inside text-white mb-4">
-            <li>Picnic on the Farm – <span className="line-through">₦25,000</span> (45 minutes)</li>
-          </ul>
-          <p className="text-white">
-            Relax after your tour in our farm picnic area.<br />
-            Enjoy the peaceful view, take pictures, and spend more time around the animals.<br />
-            (Please note: food is not provided, you can bring your own snacks or lunch.)
-          </p>
-        </div>
-      </section>
-
-      <section className="py-12 md:py-16 bg-white">
-        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2
-            className="text-2xl font-bold text-gray-900 mb-4"
-            data-testid="text-cancellation-title"
-          >
-            Cancellation Policy
-          </h2>
-          <ol className="list-decimal list-inside text-gray-700 space-y-2">
-            <li>You can cancel at least 24 hours before your visit for a full refund.</li>
-            <li>If you cancel less than 24 hours before your visit, there will be no refund.</li>
-            <li>If weather is bad or there are changes, we'll offer you a new date or a refund.</li>
-            <li>Minimum number of guests is required. If not met, we'll reschedule or refund.</li>
-          </ol>
         </div>
       </section>
     </div>
