@@ -1,7 +1,6 @@
 import { Link } from "wouter";
 import { useQuery } from "@tanstack/react-query";
 import { Button } from "@/components/ui/button";
-import { MapPin } from "lucide-react";
 import { Skeleton } from "@/components/ui/skeleton";
 import type { Product } from "@shared/schema";
 
@@ -228,41 +227,36 @@ export default function Home() {
       </section>
 
       {/* Guided Farm Experience Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-brand-orange">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="order-2 lg:order-1">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
                 Guided Farm Experience
               </h2>
-              <div className="space-y-4 text-gray-600">
+              <div className="space-y-4 text-white/90">
                 <p>
-                  Walk through our fields, meet our farmers, and see the care behind every harvest.
+                  Walk through our fields, meet our farmers, and see the care behind every harvest. We blend traditional methods with innovation using smart irrigation, organic composting, and responsible livestock management to keep our soil fertile and our produce pure.
                 </p>
                 <p>
-                  We blend traditional methods with innovation using smart irrigation, organic composting, and responsible livestock management to keep our soil fertile and our produce pure.
+                  Located in Plot 1-5, Epiphany Street, Akiti area, Egbeda Local Govt., Ibadan, Oyo State
                 </p>
-                <div className="flex items-start gap-2 pt-2">
-                  <MapPin className="h-5 w-5 text-brand-blue mt-0.5 flex-shrink-0" />
-                  <p className="text-sm">
-                    Located in Plot 1-5, Epiphany Street, Akiti area, Egbeda Local Govt., Ibadan, Oyo State
-                  </p>
-                </div>
               </div>
               <Link href="/farm-experience">
                 <Button
-                  className="mt-8 bg-brand-blue text-white"
+                  variant="outline"
+                  className="mt-8 border-white text-white rounded-full px-6"
                   data-testid="button-view-farm-experience"
                 >
-                  View all
+                  View all <span className="ml-2">→</span>
                 </Button>
               </Link>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="rounded-lg overflow-hidden">
+              <div className="rounded-2xl overflow-hidden">
                 <img
-                  src={farmersImg}
-                  alt="Farmers at Epiphany Farms"
+                  src={farmBuildingImg}
+                  alt="Farm building at Epiphany Farms"
                   className="w-full h-80 md:h-96 object-cover"
                 />
               </div>
