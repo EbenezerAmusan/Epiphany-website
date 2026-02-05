@@ -10,6 +10,7 @@ import Home from "@/pages/Home";
 import Shop from "@/pages/Shop";
 import PigletSales from "@/pages/PigletSales";
 import BreedShowcase from "@/pages/BreedShowcase";
+import FarmExperience from "@/pages/FarmExperience";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -19,6 +20,7 @@ function Router() {
       <Route path="/shop" component={Shop} />
       <Route path="/piglet-sales" component={PigletSales} />
       <Route path="/showcase" component={BreedShowcase} />
+      <Route path="/farm-experience" component={FarmExperience} />
       <Route component={NotFound} />
     </Switch>
   );
