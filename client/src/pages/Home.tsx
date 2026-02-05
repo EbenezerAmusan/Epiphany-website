@@ -147,14 +147,14 @@ export default function Home() {
       </section>
 
       {/* Piglet Reserve & Sales Section */}
-      <section className="py-16 md:py-24">
+      <section className="py-16 md:py-24 bg-brand-green">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
             <div className="order-2 lg:order-1">
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+              <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
                 Piglet - Reserve & Sales
               </h2>
-              <div className="space-y-4 text-gray-600">
+              <div className="space-y-4 text-white/90">
                 <p>
                   TN Piglet start at 150,000 naira at weaning. Price goes up with age.
                 </p>
@@ -167,15 +167,16 @@ export default function Home() {
               </div>
               <Link href="/piglet-sales">
                 <Button
-                  className="mt-8 bg-brand-blue text-white"
+                  variant="outline"
+                  className="mt-8 border-white text-white rounded-full px-6"
                   data-testid="button-view-piglet-sales"
                 >
-                  View all
+                  View all <span className="ml-2">→</span>
                 </Button>
               </Link>
             </div>
             <div className="order-1 lg:order-2">
-              <div className="rounded-lg overflow-hidden">
+              <div className="rounded-2xl overflow-hidden">
                 <img
                   src={pigImg}
                   alt="Farm pig"
