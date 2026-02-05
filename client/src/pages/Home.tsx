@@ -266,15 +266,15 @@ export default function Home() {
       </section>
 
       {/* Host an Event Section */}
-      <section className="py-16 md:py-24 bg-brand-blue">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className="text-2xl md:text-3xl font-bold text-white mb-6">
+          <h2 className="text-2xl md:text-3xl font-bold text-brand-green mb-6">
             Host an Event
           </h2>
-          <h3 className="text-xl md:text-2xl text-brand-yellow font-semibold mb-8">
+          <h3 className="text-xl md:text-2xl text-gray-900 font-semibold mb-8">
             Welcome to Epiphany Farms!
           </h3>
-          <div className="max-w-3xl mx-auto space-y-6 text-white/90">
+          <div className="max-w-3xl mx-auto space-y-6 text-gray-600">
             <p>
               We love to share our farm with visitors, families, schools, and groups. Come and see how real food is grown. You can join our farm tours, taste fresh food, and enjoy special farm events that help you connect with nature.
             </p>
@@ -283,8 +283,9 @@ export default function Home() {
             </p>
           </div>
           <Button
+            variant="outline"
             size="lg"
-            className="mt-10 bg-brand-yellow text-brand-blue-dark font-semibold px-8"
+            className="mt-10 border-brand-green text-brand-green rounded-full px-8"
             data-testid="button-events-coming-soon"
           >
             Coming Soon
