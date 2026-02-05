@@ -189,18 +189,18 @@ export default function Home() {
       </section>
 
       {/* Breed Showcase Section */}
-      <section className="py-16 md:py-24 bg-gray-50">
+      <section className="py-16 md:py-24 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="grid grid-cols-1 lg:grid-cols-2 gap-10 items-center">
-            <div className="rounded-lg overflow-hidden">
+            <div className="rounded-2xl overflow-hidden">
               <img
                 src={pigsImg}
                 alt="Pig breeds at Epiphany Farms"
                 className="w-full h-80 md:h-96 object-cover"
               />
             </div>
-            <div>
-              <h2 className="text-2xl md:text-3xl font-bold text-gray-900 mb-6">
+            <div className="text-center lg:text-right">
+              <h2 className="text-2xl md:text-3xl font-bold text-brand-green mb-6">
                 Breed Showcase
               </h2>
               <div className="space-y-4 text-gray-600">
@@ -211,14 +211,17 @@ export default function Home() {
                   From the caring TN70 sow to the strong TN Duroc boar, our pigs are gentle, easy to handle, and cause less stress on the farm — making your work smoother and more enjoyable every day.
                 </p>
               </div>
-              <Link href="/showcase">
-                <Button
-                  className="mt-8 bg-brand-blue text-white"
-                  data-testid="button-view-showcase"
-                >
-                  View all
-                </Button>
-              </Link>
+              <div className="flex justify-center lg:justify-end">
+                <Link href="/showcase">
+                  <Button
+                    variant="outline"
+                    className="mt-8 border-brand-green text-brand-green rounded-full px-6"
+                    data-testid="button-view-showcase"
+                  >
+                    View all <span className="ml-2">→</span>
+                  </Button>
+                </Link>
+              </div>
             </div>
           </div>
         </div>
