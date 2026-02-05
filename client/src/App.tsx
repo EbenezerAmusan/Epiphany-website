@@ -9,6 +9,7 @@ import { Footer } from "@/components/Footer";
 import Home from "@/pages/Home";
 import Shop from "@/pages/Shop";
 import PigletSales from "@/pages/PigletSales";
+import BreedShowcase from "@/pages/BreedShowcase";
 import NotFound from "@/pages/not-found";
 
 function Router() {
@@ -17,6 +18,7 @@ function Router() {
       <Route path="/" component={Home} />
       <Route path="/shop" component={Shop} />
       <Route path="/piglet-sales" component={PigletSales} />
+      <Route path="/showcase" component={BreedShowcase} />
       <Route component={NotFound} />
     </Switch>
   );
